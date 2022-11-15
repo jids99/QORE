@@ -1,53 +1,66 @@
 ﻿@model IEnumerable<CRUD.Models.User>
 
 @{
-    ViewData["Title"] = "Order of The White Lotus";
+    ViewData["Title"] = "Employees";
 }
 
-<h1>Order of The White Lotus</h1>
 
 <p>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Birthdate)
-            </th>
-            <th>
-                <a asp-action="Create" class="btn btn-sm btn-primary">
-                    New
-                </a>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Birthdate)
-            </td>
-            <td>
+<div class="col-12">
+
+    <div class="card">
+
+        <div class="card-body">
+            @*<h5 class="card-title">Recent Sales <span>| Today</span></h5>*@
+            <h5 class="card-title">Employees Table</h5>
+            <a asp-action="Create" class="btn btn-sm btn-primary">
+                <i class="bi bi-person-plus-fill"></i> New Employee
+            </a>
+
+                <table class="table table-borderless datatable">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th scope="col">
+                                @Html.DisplayNameFor(model => model.Birthdate)
+                            </th>
+                            <th scope="col">
+                                
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                @foreach (var item in Model) {
+                        <tr>
+                            <td scope="row">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Birthdate)
+                            </td>
+                            <td>
                 
-                <form asp-action="Delete" asp-route-id="@item.Id">
-                    <div class="btn-group btn-group-sm">
-                        <a asp-action="Create" asp-route-id="@item.Id" class="btn btn-sm btn-warning">
-                            Edit
-                        </a>
-                        <button type="submit" class="btn btn-danger"
-                            onclick="return confirm('Are you sure to delete this record?')">
-                            Delete
-                        </button>
-                    </div>
-                </form>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                                <form asp-action="Delete" asp-route-id="@item.Id">
+                                    <div class="btn-group btn-group-sm">
+                                        <a asp-action="Create" asp-route-id="@item.Id" class="btn btn-sm btn-secondary">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                        &nbsp;
+                                        <button type="submit" class="btn btn-outline-danger"
+                                            onclick="return confirm('Are you sure to delete this record?')">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                }
+                    </tbody>
+                </table>
+        
+        </div>
+     </div>
+</div>
