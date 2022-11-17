@@ -1,6 +1,9 @@
 ﻿@model IEnumerable<CRUD.Models.User>
 
 @{
+
+    @ViewBag.id;
+
     ViewData["Title"] = "Employees";
 }
 
@@ -28,18 +31,33 @@
                                 @Html.DisplayNameFor(model => model.Birthdate)
                             </th>
                             <th scope="col">
-                                
+                                @Html.DisplayNameFor(model => model.EmailAdd)
+                            </th>
+                            <th scope="col">
+                                @Html.DisplayNameFor(model => model.PresentAdd)
+                            </th>
+                            <th scope="col">
+                                @Html.DisplayNameFor(model => model.Date)
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                 @foreach (var item in Model) {
                         <tr>
-                            <td scope="row">
+                            <td scope="row" class="text-uppercase">
                                 @Html.DisplayFor(modelItem => item.Name)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Birthdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmailAdd)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PresentAdd)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
                             </td>
                             <td>
                 

@@ -1,36 +1,72 @@
 ﻿@model CRUD.Models.User
 
 @{
-    ViewData["Title"] = "Create";
+    if (@ViewBag.id == 0)
+    {
+        ViewData["Title"] = "New";
+    } else {
+        ViewData["Title"] = "Update";
+    }
 }
 
 
-<h4>User</h4>
+@*<h4>User</h4>*@
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Birthdate" class="control-label"></label>
-                <input asp-for="Birthdate" class="form-control" />
-                <span asp-validation-for="Birthdate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title"> 
+                    <a asp-action="Index">
+                        <i class="bi bi-caret-left-fill"></i>
+                    </a>
+                    @ViewData["Title"] Employee 
+                </div>
+                <form asp-action="Create" class="row g-3">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
 
-<div>
-    <a asp-action="Index">Back to List</a>
+                    <div class="col-md-12">
+                        <div class="form-floating">
+                            <input asp-for="Name" class="form-control" placeholder="Your Name" />
+                                <label asp-for="Name" class="control-label"></label>
+                        </div>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input asp-for="Birthdate" class="form-control" />
+                            <label asp-for="Birthdate" class="control-label"></label>
+                        </div>
+                        <span asp-validation-for="Birthdate" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input asp-for="EmailAdd" class="form-control" placeholder="Email Address" />
+                            <label asp-for="EmailAdd" class="control-label"></label>
+                        </div>
+                        <span asp-validation-for="EmailAdd" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-floating">
+                            <input asp-for="PresentAdd" class="form-control" placeholder="Present Address" />
+                            <label asp-for="PresentAdd" class="control-label"></label>
+                        </div>
+                        <span asp-validation-for="PresentAdd" class="text-danger"></span>
+                    </div>
+
+                    <hr />
+                    <div class="col-md-12">
+                        <input type="submit" value="Submit" class="btn btn-primary float-right" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+    </div>
 </div>
 
 @section Scripts {

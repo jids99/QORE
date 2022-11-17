@@ -46,21 +46,24 @@ namespace CRUD.Controllers
         // GET: User/Create
         public IActionResult Create(int id=0)
         {
-            if(id == 0)
+            ViewBag.id = id;
+            if (id == 0)
                 return View(new User());
             else
                 return View(_context.Users.Find(id));
         }
+
 
         // POST: User/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Birthdate")] User user)
+        public async Task<IActionResult> Create([Bind("Id,Name,Birthdate,EmailAdd,PresentAdd")] User user)
         {
             if (ModelState.IsValid)
             {
+                user.Date = DateTime.Now;
                 if(user.Id == 0)
                 {
                     _context.Add(user);
@@ -109,6 +112,8 @@ namespace CRUD.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+
 
         private bool UserExists(int id)
         {
